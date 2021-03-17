@@ -13,7 +13,7 @@ En esta pildora sobre SQL Server voy a mostrar que vistas podemos consultar sobr
 
 
 Estas vistas, que no tablas, nos permiten ver los procesos de usuario y de sistema que están en ejecución.
-Los procesos de sistema no vienen de ningún sitio mas alla de la maquina donde tenemos la instancia de SQL Server, son generados por el propio motor de SQL Server. Los procesos de sistema son procesos internos que no deberian generar problemas en el rendimiento de la instancia por lo que se suelen descartar a la hora de analizar el entorno.
+Los procesos de sistema nacen en la misma máquina donde tenemos la instancia de SQL Server, son generados por el propio motor de SQL Server. Los procesos de sistema son procesos internos que no deberian generar problemas en el rendimiento de la instancia por lo que se suelen descartar a la hora de analizar el entorno.
 Los procesos de usuario pueden haber sido lanzados desde la maquina local o desde otras maquinas.
 Todo proceso lleva asignado un spid. Antiguamente se consideraba que los procesos que tenian un spid igual o menos a 50 eran los unicos de sistema, pero no es asi, puede haber procesos de sistema con spid superior al 50. 
 
