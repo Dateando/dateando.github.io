@@ -40,8 +40,9 @@ GRANT VIEW SERVER STATE TO [loginMio]
 
 ## sys.dm_exec_session
 
-Todo proceso que llega a SQL Server se gestiona como una sesion, tanto procesos de sistema como de usuario. Sera la vista que mas spid nos devuelva.
-Esta vista nos ofrece información interesante sobre la conexion que se ha establecido para abrir la nueva sesion y datos acumulados de la sesión. Es importante aclarar que una sesion esta formada por una o mas request, se mantiene desde que se abre la conexión hasta que se cierra.
+Todo proceso que llega a SQL Server se gestiona como una sesion, tanto procesos de sistema como de usuario. Esta vista nos devolvera todas los spid.
+También ofrece información interesante sobre la conexión que se ha establecido para abrir la nueva sesion y datos acumulados de la sesión. Es importante aclarar que una sesión esta formada por una o mas request, y la sesión se mantiene desde que se abre la conexión hasta que se cierra.
+
 De aqui nos interesan principalmente las siguientes columnas:
 
 - *login_name*    Login que ha iniciado el proceso
@@ -59,7 +60,7 @@ Esta vista nos filtra aquellas sesiones que sean de usuario, las que sean de int
 ## sys.dm_exec_request
 Esta ultima es la mas interesante y de ella sacararemos la mayor parte de la información que nos interesa. El ambito de una request son las sesiones, todas las request se ejecutan dentro de una sesion. Esta vista nos muestra los procesos que estan en ejecución. Las columnas a destacar son:
 
-- *database_id*      Nombre de la base de datos donde se ha conectado el proceso [ DB_NAME(dbid) ]
+- *database_id*      Nombre de la base de datos donde se ha conectado el proceso `[ DB_NAME(dbid) ]`
 - *blocked*   spid del proceso que esta bloqueando a este proceso. Muy importante, ya que el numero que aparezca aqui impide avanzar al proceso y es candidato a analizarlo.
 - *status*    Estados por los que pasa el proceso. Posibles valores: dormant, running, background, background, rollback, pending, runnable, spinloop, suspended.
 - *hostname*  Servidor/maquina desde donde se ha creado la conexión para iniciar el proceso en SQL Server.
