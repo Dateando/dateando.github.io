@@ -61,12 +61,28 @@ Esta vista nos filtra aquellas sesiones que sean de usuario, las que sean de int
 Esta ultima es la mas interesante y de ella sacararemos la mayor parte de la información que nos interesa. El ambito de una request son las sesiones, todas las request se ejecutan dentro de una sesion. Esta vista nos muestra los procesos que estan en ejecución. Las columnas a destacar son:
 
 - *database_id*      Nombre de la base de datos donde se ha conectado el proceso `[ DB_NAME(dbid) ]`
-- *blocked*   spid del proceso que esta bloqueando a este proceso. Muy importante, ya que el numero que aparezca aqui impide avanzar al proceso y es candidato a analizarlo.
+- *blocking_session_id*   spid del proceso que esta bloqueando a este proceso. Muy importante, ya que el numero que aparezca aqui impide avanzar al proceso y es candidato a analizarlo.
 - *status*    Estados por los que pasa el proceso. Posibles valores: dormant, running, background, background, rollback, pending, runnable, spinloop, suspended.
 - *hostname*  Servidor/maquina desde donde se ha creado la conexión para iniciar el proceso en SQL Server.
-- *estimated_completion_time*
-
-
+- *percent_complete* Muestra el % que lleva alcanzado cuando la request ejecuta alguno de los siguientes comandos:
+                > **ALTER INDEX REORGANIZE
+                > **AUTO_SHRINK option with ALTER DATABASE
+                > **BACKUP DATABASE
+                > **DBCC CHECKDB
+                > **DBCC CHECKFILEGROUP
+                > **DBCC CHECKTABLE
+                > **DBCC INDEXDEFRAG
+                > **DBCC SHRINKDATABASE
+                > **DBCC SHRINKFILE
+                > **RECOVERY
+                > **RESTORE DATABASE
+                > **ROLLBACK 
+                > **TDE ENCRYPTION
+- *command*   Tipo de comando que se ejecuta o se ejecuto en la ultima request. Ejemplos: SELECT, INSERT, UPDATE, DELETE, BACKUP LOG, BACKUP DATABASE, DBCC...
+- *wait_type*  Tipo de espera por la que espera la request en este momento actual, en caso de estar espeando por algo. Si vale NULL es que no esta esperand por nada, estará en `status` con valor a `running`. 
+- *wait_time*  Tiempo en milisegundos que lleva esperando por los diferentes recursos (cpu, memoria, indices, tablas, etc) 
+- *last_wait_type*  Último tipo de espera de la request.
+- *wait_resource*  Si wait_type es distinto de NULL y esta esperando por un recurso tipo tabla, índice, etc aparecerá en esta columna.
 
 
 
