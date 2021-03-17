@@ -6,10 +6,10 @@ tags: sqlserver, databases,sessions, process, dmv,dm_exec_requests,dm_exec_conne
 
 En esta pildora sobre SQL Server voy a mostrar que vistas podemos consultar sobre los procesos en ejecución. Tenemos las siguientes:
 
-+.  master.dbo.sysprocesses *(deprecated)*
-+.  sys.dm_exec_sessions
-+.  sys.dm_exec_connections
-+.  sys.dm_exec_request
+*  master.dbo.sysprocesses *(deprecated)*
+*  sys.dm_exec_sessions
+*  sys.dm_exec_connections
+*  sys.dm_exec_request
 
 
 Estas vistas, que no tablas, nos permiten ver los procesos de usuario y de sistema que están en ejecución.
