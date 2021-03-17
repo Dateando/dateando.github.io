@@ -57,7 +57,7 @@ De aqui nos interesan principalmente las siguientes columnas:
 Esta vista nos filtra aquellas sesiones que sean de usuario, las que sean de internas de sistema no apareceran. Por tanto, la mejor forma de filtrar en el resto de vistas para que se muestre solo las lineas correspondientes a procesos de usuario es hacer un `INNER JOIN` con esta vista por el campo id_session. Veremos que hay consultas que filtran por `id_session > 50` pero la forma mas correcta es mediante el join a esta vista. Tambien es recomendable quitar en el filtro la sesion en la que estamos lanzando nuestra consulta de monitorización de la siguiente forma `id_session <> @@SPID`.
 
 ## sys.dm_exec_request
-Esta ultima es la mas interesante y de ella sacararemos la mayor parte de la información que nos interesa. El ambito de una request son las sesiones, todas las request se ejecutan dentro de una sesion. Las columnas a destacar son:
+Esta ultima es la mas interesante y de ella sacararemos la mayor parte de la información que nos interesa. El ambito de una request son las sesiones, todas las request se ejecutan dentro de una sesion. Esta vista nos muestra los procesos que estan en ejecución. Las columnas a destacar son:
 
 - *database_id*      Nombre de la base de datos donde se ha conectado el proceso [ DB_NAME(dbid) ]
 - *blocked*   spid del proceso que esta bloqueando a este proceso. Muy importante, ya que el numero que aparezca aqui impide avanzar al proceso y es candidato a analizarlo.
