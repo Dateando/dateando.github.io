@@ -67,6 +67,6 @@ Esta ultima es la mas interesante y de ella sacararemos la mayor parte de la inf
 
 
 
-![_config.yml]({{ site.baseurl }}/images/config.png)
+
 
 
