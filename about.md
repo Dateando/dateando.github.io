@@ -4,12 +4,10 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+Soy Administrador de Bases de Datos (DBA) desde hace mas de diez años. Me encantan este mundo y voy a intentar plasmar aqui en español parte del conocimiento que he ido acumulando a lo largo de mi carrera profesional-
 
-### More Information
 
-A place to include any other types of information that you'd like to include about yourself.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[dateando@gmail.com](mailto:dateando@gmail.com)
