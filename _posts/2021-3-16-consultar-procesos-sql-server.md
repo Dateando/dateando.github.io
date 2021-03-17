@@ -6,7 +6,7 @@ tags: sqlserver, databases,sessions, process, dmv,dm_exec_requests,dm_exec_conne
 
 En esta pildora sobre SQL Server voy a mostrar que vistas podemos consultar sobre los procesos en ejecución. Tenemos las siguientes:
 
-1. master.dbo.sysprocesses (deprecated)
+1. master.dbo.sysprocesses *(deprecated)*
 2. master.sys.dm_exec_sessions
 3. master.sys.dm_exec_connections
 4. master.sys.dm_exec_request
@@ -44,13 +44,13 @@ Todo proceso que llega a SQL Server se gestiona como una sesion, tanto procesos 
 Esta vista nos ofrece información interesante sobre la conexion que se ha establecido para abrir la nueva sesion y datos acumulados de la sesión. Es importante aclarar que una sesion esta formada por una o mas request, se mantiene desde que se abre la conexión hasta que se cierra.
 De aqui nos interesan principalmente las siguientes columnas:
 
-> login_name    Login que ha iniciado el proceso
-> host_name     Servidor/maquina desde donde se ha creado la conexión para iniciar el proceso en SQL Server. Si es un proceso interno sera NULL.
-> cpu_time      Tiempo en milisegundos que lleva ejecutando la cpu en la sesion actual.
-> reads         Numero de paginas leidas en la sesion actual. Una pagina son 8Kbytes.
-> writes        Número de paginas escritas en la sesion actual. 
-> last_write    
-> program_name  aplicación que lanzar el proceso. Si es un proceso interno sera NULL.
+- login_name    Login que ha iniciado el proceso
+- host_name     Servidor/maquina desde donde se ha creado la conexión para iniciar el proceso en SQL Server. Si es un proceso interno sera NULL.
+- cpu_time      Tiempo en milisegundos que lleva ejecutando la cpu en la sesion actual.
+- reads         Numero de paginas leidas en la sesion actual. Una pagina son 8Kbytes.
+- writes        Número de paginas escritas en la sesion actual. 
+- last_write    
+- program_name  aplicación que lanzar el proceso. Si es un proceso interno sera NULL.
 
 ## master.sys.dm_exec_connections
 
@@ -59,11 +59,11 @@ Esta vista nos filtra aquellas sesiones que sean de usuario, las que sean de int
 ## master.sys.dm_exec_request
 Esta ultima es la mas interesante y de ella sacararemos la mayor parte de la información que nos interesa. El ambito de una request son las sesiones, todas las request se ejecutan dentro de una sesion. Las columnas a destacar son:
 
-> database_id      Nombre de la base de datos donde se ha conectado el proceso [ DB_NAME(dbid) ]
-> blocked   spid del proceso que esta bloqueando a este proceso. Muy importante, ya que el numero que aparezca aqui impide avanzar al proceso y es candidato a analizarlo.
-> status    Estados por los que pasa el proceso. Posibles valores: dormant, running, background, background, rollback, pending, runnable, spinloop, suspended.
-> hostname  Servidor/maquina desde donde se ha creado la conexión para iniciar el proceso en SQL Server.
-> estimated_completion_time
+- database_id      Nombre de la base de datos donde se ha conectado el proceso [ DB_NAME(dbid) ]
+- blocked   spid del proceso que esta bloqueando a este proceso. Muy importante, ya que el numero que aparezca aqui impide avanzar al proceso y es candidato a analizarlo.
+- status    Estados por los que pasa el proceso. Posibles valores: dormant, running, background, background, rollback, pending, runnable, spinloop, suspended.
+- hostname  Servidor/maquina desde donde se ha creado la conexión para iniciar el proceso en SQL Server.
+- estimated_completion_time
 
 
 
