@@ -15,7 +15,7 @@ tags: sqlserver, databases,sessions, process, dmv,dm_exec_requests,dm_exec_conne
   gtag('config', 'G-GEF11HDH3Q');
 </script>
 
-H1 Analizar procesos de SQL Server mediante DMV *
+# Analizar procesos de SQL Server mediante DMV 
 
 En esta pildora sobre SQL Server voy a mostrar que vistas podemos consultar sobre los procesos en ejecución. Tenemos las siguientes:
 
