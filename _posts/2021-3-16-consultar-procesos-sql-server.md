@@ -74,7 +74,9 @@ Esta ultima es la mas interesante  porque solo ofrece las request/peticiones que
 - *database_id*      Nombre de la base de datos donde se ha conectado el proceso `[ DB_NAME(dbid) ]`
 - *blocking_session_id*   spid del proceso que esta bloqueando a este proceso. Muy importante, ya que el numero que aparezca aqui impide avanzar al proceso y es candidato a analizarlo.
 - *status*    Estados por los que pasa el proceso. Posibles valores: dormant, running, background, background, rollback, pending, runnable, spinloop, suspended.
+- *command*   Tipo de comando que se ejecuta o se ejecuto en la ultima request. Ejemplos: SELECT, INSERT, UPDATE, DELETE, BACKUP LOG, BACKUP DATABASE, DBCC...
 - *percent_complete* Muestra el % que lleva alcanzado cuando la request ejecuta alguno de los siguientes comandos:
+
     - ALTER INDEX REORGANIZE
     - AUTO_SHRINK option with ALTER DATABASE
     - BACKUP DATABASE
@@ -88,7 +90,7 @@ Esta ultima es la mas interesante  porque solo ofrece las request/peticiones que
     - RESTORE DATABASE
     - ROLLBACK 
     - TDE ENCRYPTION
-- *command*   Tipo de comando que se ejecuta o se ejecuto en la ultima request. Ejemplos: SELECT, INSERT, UPDATE, DELETE, BACKUP LOG, BACKUP DATABASE, DBCC...
+
 - *wait_type*  Tipo de espera por la que espera la request/petición en este momento actual. Si vale NULL es que no esta esperando por nada, estará en `status` con valor a `running`. 
 - *wait_time*  Tiempo en milisegundos que lleva esperando por los diferentes recursos (cpu, memoria, indices, tablas, etc) 
 - *last_wait_type*  Último tipo de espera de la request/petición.
