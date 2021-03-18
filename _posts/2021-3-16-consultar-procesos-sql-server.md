@@ -21,8 +21,8 @@ En esta pildora sobre SQL Server voy a mostrar que vistas podemos consultar sobr
 
 *  **master.dbo.sysprocesses** *(deprecated)*
 *  **sys.dm_exec_sessions**
-*  **sys.dm_exec_connections**
-*  **sys.dm_exec_request**
+*  **sys.dm_exec_connection+s**
+*  **sys.dm_exec_request**  *(disponble desde SQLServer 2008)*
 
 
 Estas vistas, que no tablas, nos permiten ver los procesos de usuario y de sistema que están en ejecución.
@@ -80,8 +80,8 @@ Esta ultima es la mas interesante y de ella sacararemos la mayor parte de la inf
 - *status*    Estados por los que pasa el proceso. Posibles valores: dormant, running, background, background, rollback, pending, runnable, spinloop, suspended.
 - *hostname*  Servidor/maquina desde donde se ha creado la conexión para iniciar el proceso en SQL Server.
 - *percent_complete* Muestra el % que lleva alcanzado cuando la request ejecuta alguno de los siguientes comandos:
-                > **ALTER INDEX REORGANIZE
-                > **AUTO_SHRINK option with ALTER DATABASE
+                > ALTER INDEX REORGANIZE
+                > AUTO_SHRINK option with ALTER DATABASE
                 > **BACKUP DATABASE
                 > **DBCC CHECKDB
                 > **DBCC CHECKFILEGROUP
