@@ -65,6 +65,7 @@ De aqui nos interesan principalmente las siguientes columnas:
 - *writes*        Número de paginas escritas en la sesion actual. 
 - *last_write*    
 - *program_name*  aplicación que lanzar el proceso. Si es un proceso interno sera NULL.
+- *transaction_isolation_level* Nivel de aislamiento definido para la sesión.
 
 Las columnas que muestran metricas del tipo cpu_time, reads, writes, etc, son valores acumulados de todas las request que se han ejecutado desde dentro de esa sesión.
 
@@ -80,19 +81,19 @@ Esta ultima es la mas interesante y de ella sacararemos la mayor parte de la inf
 - *status*    Estados por los que pasa el proceso. Posibles valores: dormant, running, background, background, rollback, pending, runnable, spinloop, suspended.
 - *hostname*  Servidor/maquina desde donde se ha creado la conexión para iniciar el proceso en SQL Server.
 - *percent_complete* Muestra el % que lleva alcanzado cuando la request ejecuta alguno de los siguientes comandos:
-                > ALTER INDEX REORGANIZE
-                > AUTO_SHRINK option with ALTER DATABASE
-                > **BACKUP DATABASE
-                > **DBCC CHECKDB
-                > **DBCC CHECKFILEGROUP
-                > **DBCC CHECKTABLE
-                > **DBCC INDEXDEFRAG
-                > **DBCC SHRINKDATABASE
-                > **DBCC SHRINKFILE
-                > **RECOVERY
-                > **RESTORE DATABASE
-                > **ROLLBACK 
-                > **TDE ENCRYPTION
+                > - ALTER INDEX REORGANIZE
+                > - AUTO_SHRINK option with ALTER DATABASE
+                > - BACKUP DATABASE
+                > - DBCC CHECKDB
+                > - DBCC CHECKFILEGROUP
+                > - DBCC CHECKTABLE
+                > - DBCC INDEXDEFRAG
+                > - DBCC SHRINKDATABASE
+                > - DBCC SHRINKFILE
+                > - RECOVERY
+                > - RESTORE DATABASE
+                > - ROLLBACK 
+                > - TDE ENCRYPTION
 - *command*   Tipo de comando que se ejecuta o se ejecuto en la ultima request. Ejemplos: SELECT, INSERT, UPDATE, DELETE, BACKUP LOG, BACKUP DATABASE, DBCC...
 - *wait_type*  Tipo de espera por la que espera la request en este momento actual, en caso de estar espeando por algo. Si vale NULL es que no esta esperand por nada, estará en `status` con valor a `running`. 
 - *wait_time*  Tiempo en milisegundos que lleva esperando por los diferentes recursos (cpu, memoria, indices, tablas, etc) 
