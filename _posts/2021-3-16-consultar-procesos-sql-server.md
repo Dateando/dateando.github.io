@@ -66,6 +66,8 @@ De aqui nos interesan principalmente las siguientes columnas:
 - *last_write*    
 - *program_name*  aplicación que lanzar el proceso. Si es un proceso interno sera NULL.
 
+Las columnas que muestran metricas del tipo cpu_time, reads, writes, etc, son valores acumulados de todas las request que se han ejecutado desde dentro de esa sesión.
+
 ## sys.dm_exec_connections
 
 Esta vista nos filtra aquellas sesiones que sean de usuario, las que sean de internas de sistema no apareceran. Por tanto, la mejor forma de filtrar en el resto de vistas para que se muestre solo las lineas correspondientes a procesos de usuario es hacer un `INNER JOIN` con esta vista por el campo id_session. Veremos que hay consultas que filtran por `id_session > 50` pero la forma mas correcta es mediante el join a esta vista. Tambien es recomendable quitar en el filtro la sesion en la que estamos lanzando nuestra consulta de monitorización de la siguiente forma `id_session <> @@SPID`.
