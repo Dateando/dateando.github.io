@@ -99,12 +99,11 @@ Esta ultima es la mas interesante y de ella sacararemos la mayor parte de la inf
 - *last_wait_type*  Último tipo de espera de la request.
 - *wait_resource*  Si wait_type es distinto de NULL y esta esperando por un recurso tipo tabla, índice, etc aparecerá en esta columna.
 
-/
+
 Para consultarl cualquiera de estas vista, se requiere permisos VIEW SERVER STATE
 ``` T-SQL
 GRANT VIEW SERVER STATE TO [loginMio]
 ```
-/
-/
+
 
 
