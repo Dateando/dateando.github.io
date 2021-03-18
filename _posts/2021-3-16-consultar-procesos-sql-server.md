@@ -53,7 +53,7 @@ GRANT VIEW SERVER STATE TO [loginMio]
 
 ## sys.dm_exec_session
 
-Todo proceso que llega a SQL Server se gestiona como una sesion, tanto procesos de sistema como de usuario. Esta vista nos devolvera todas los spid.
+Toda conexión que llega a SQL Server se gestiona como una sesion, tanto procesos de sistema como de usuario. Esta vista nos devolvera todas las sesiones, y cada sesion tiene asociado un spid.
 También ofrece información interesante sobre la conexión que se ha establecido para abrir la nueva sesion y datos acumulados de la sesión. Es importante aclarar que una sesión esta formada por una o mas request, y la sesión se mantiene desde que se abre la conexión hasta que se cierra.
 
 De aqui nos interesan principalmente las siguientes columnas:
@@ -97,6 +97,12 @@ Esta ultima es la mas interesante y de ella sacararemos la mayor parte de la inf
 - *last_wait_type*  Último tipo de espera de la request.
 - *wait_resource*  Si wait_type es distinto de NULL y esta esperando por un recurso tipo tabla, índice, etc aparecerá en esta columna.
 
-
+/
+Para consultarl cualquiera de estas vista, se requiere permisos VIEW SERVER STATE
+``` T-SQL
+GRANT VIEW SERVER STATE TO [loginMio]
+```
+/
+/
 
 
