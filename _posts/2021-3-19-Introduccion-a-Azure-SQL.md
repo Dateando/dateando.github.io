@@ -1,5 +1,5 @@
 ---
-layout: master
+layout: post
 title: Introduccion a Azure SQL
 date: 19 March 2021
 ---
