@@ -99,9 +99,9 @@ Esta ultima es la mas interesante  porque solo ofrece las request/peticiones que
 
 Para consultar cualquiera de estas vista, se requiere permisos VIEW SERVER STATE
 ~~~ 
-`T-SQL:
+T-SQL:
 
-GRANT VIEW SERVER STATE TO [loginMio]`
+GRANT VIEW SERVER STATE TO [loginMio]
 ~~~
 
 La siguiente consulta muestra una foto muy completa de la situación activa en la instancia analizada mediante las DMV vistas:
