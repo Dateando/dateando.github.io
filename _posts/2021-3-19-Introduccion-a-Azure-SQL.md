@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Introducción a Azure SQL
-published-on: 19 March 2021
+published-on: 19 Marzo 2021
 keywords: sqlserver, databases, Azure, Azure SQL, Azure SQL Database, Azure SQL Managed Instance, Azure SQL Server, Virtual Machine, PaaS, IaaS
 ---
 
