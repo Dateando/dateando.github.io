@@ -88,15 +88,18 @@ Esta ultima es la mas interesante  porque solo ofrece las request/peticiones que
 
 Para consultar cualquiera de estas vista, se requiere permisos VIEW SERVER STATE
  
-~~~ T-SQL:
+~~~ 
+T-SQL:
 
-GRANT VIEW SERVER STATE TO [loginMio] ~~~
+GRANT VIEW SERVER STATE TO [loginMio] 
+~~~
 
 
 La siguiente consulta muestra una foto muy completa de la situación activa en la instancia analizada mediante las DMV vistas:
 
 
-~~~ SELECT  des.session_id,
+~~~ 
+SELECT  des.session_id,
         des.status,
         des.login_name,
         des.[HOST_NAME],
@@ -144,7 +147,8 @@ CROSS APPLY sys.dm_exec_query_plan(der.plan_handle) deqp
 
 WHERE des.session_id <> @@SPID
 
-ORDER BY  des.session_id ~~~
+ORDER BY  des.session_id 
+~~~
 
 
 
