@@ -1,7 +1,7 @@
 ---
 layout: post
 title: SQLSERVER  Monitorizar los procesos mediante DMV
-tag: sqlserver, databases,sessions, process, dmv,dm_exec_requests,dm_exec_connections,dm_exec_sessions 
+tag: sqlserver, databases,sessions, process, dmv, dm_exec_requests, dm_exec_connections, dm_exec_sessions 
 ---
 
 
@@ -104,7 +104,7 @@ GRANT VIEW SERVER STATE TO [loginMio]
 
 La siguiente consulta muestra una foto muy completa de la situación activa en la instancia analizada mediante las DMV vistas:
 
-`
+```
 SELECT  des.session_id,
         des.status,
         des.login_name,
@@ -144,17 +144,19 @@ SELECT  des.session_id,
                 AS [executing_statement], 
         deqp.query_plan
 
-*FROM  sys.dm_exec_sessions des
+FROM  sys.dm_exec_sessions des
 LEFT JOIN sys.dm_exec_requests der on des.session_id = der.session_id
 LEFT JOIN sys.dm_exec_connections dec on des.session_id = dec.session_id
 LEFT JOIN sys.dm_exec_query_memory_grants emg  on des.session_id = emg.session_id      
 CROSS APPLY sys.dm_exec_sql_text(der.sql_handle) dest
-CROSS APPLY sys.dm_exec_query_plan(der.plan_handle) deqp*
+CROSS APPLY sys.dm_exec_query_plan(der.plan_handle) deqp
 
 WHERE des.session_id <> @@SPID
 
 ORDER BY  des.session_id 
-`
+```
+
+
 
 
 
