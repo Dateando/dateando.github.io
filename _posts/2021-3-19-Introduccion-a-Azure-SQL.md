@@ -10,9 +10,9 @@ Azure es la nube o cloud de Microsoft. En Azure tenemos disponible un concepto q
 
 Azure SQL se compone basicamente de tres productos:
 
-- Azure SQL *Database* 
-- Azure SQL *Managed Instance*
-- Azure SQL *Server*
+- Azure SQL *Database* (SQL DB)
+- Azure SQL *Managed Instance* (SQL MI)
+- Azure SQL *Server* on Azure Virtual Machine
 
 Estos tres prductos se pueden clasificar en dos tipologias:
  
@@ -43,7 +43,7 @@ Incluye una serie de servicicos por defecto:
 En este caso estamos pagando por una instancia (siempre en la ultima versión disponible, no podemos modificarlo) que es auto administrada. Podemos meter todas las bases de datos que queramos dentro del almacenamiento que tengamos disonible en el contrato. No es exactamente como administrar una instancia en nuestras instalaciones, ya que hay algunas cosas a las que no tenemos acceso. No tenemos acceso al sistema operativo, pero es la mejor opción si queremos migrar nuestra instancia al cloud de Azure.
 
 
-## Azure SQL Server *(IaaS)*
+## Azure SQL Server on Azure Virtual Machine *(IaaS)*
 
 Es producto nos ofrece una maquina virtual en la que podemos poner la versión que queramos de SQL Server, tenemos acceso al sistema operativo e incluso podemos instalar otras aplicaciones necesarias.
 
