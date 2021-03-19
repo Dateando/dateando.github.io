@@ -1,8 +1,10 @@
 ---
 layout: post
 title: Introduccion a Azure SQL
-date: 19 March 2021
+published-on: 19 March 2021
+keywords: sqlserver, databases, Azure, Azure SQL, Azure SQL Database, Azure SQL Managed Instance, Azure SQL Server, Virtual Machine
 ---
+
 
 Azure es la nube o cloud de Microsoft. En Azure tenemos disponible un concepto que se denomina Azure SQL, si en nuestras maquinas tenemos SQL Server, en la nube de Microsoft se le denomina Azure SQL.
 
