@@ -10,12 +10,12 @@ Azure es la nube o cloud de Microsoft. En Azure tenemos disponible una solución
 
 La solución Azure SQL se compone basicamente de tres productos:
 
-- Azure SQL *Database* (SQL DB)
+- **Azure SQL *Database* (SQL DB)**. Tiene 3 niveles o tiers:
     - Normal
     - Elastic Pool
     - Hyperscale
-- Azure SQL *Managed Instance* (SQL MI)
-- Azure SQL *Server* on Azure Virtual Machine
+- **Azure SQL *Managed Instance* (SQL MI)**
+- **Azure SQL *Server* on Azure Virtual Machine**
 
 Estos tres prductos se pueden clasificar en dos tipologias:
  
