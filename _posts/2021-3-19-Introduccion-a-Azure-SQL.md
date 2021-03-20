@@ -6,9 +6,9 @@ keywords: sqlserver, databases, Azure, Azure SQL, Azure SQL Database, Azure SQL 
 ---
 
 
-Azure es la nube o cloud de Microsoft. En Azure tenemos disponible un concepto que se denomina Azure SQL, si en nuestras maquinas tenemos SQL Server, en la nube de Microsoft se le denomina Azure SQL.
+Azure es la nube o cloud de Microsoft. En Azure tenemos disponible una solución que es **Azure SQL**. Si en nuestras maquinas instalamos SQL Server, en la nube de Microsoft se le denomina Azure SQL.
 
-Azure SQL se compone basicamente de tres productos:
+La solución Azure SQL se compone basicamente de tres productos:
 
 - Azure SQL *Database* (SQL DB)
 - Azure SQL *Managed Instance* (SQL MI)
@@ -19,15 +19,18 @@ Estos tres prductos se pueden clasificar en dos tipologias:
 - PaaS: Platform as a Service. Esta tipología engloba a Azure SQL Database y Azure SQL Managed Instance, porque solo accedemos al servicio del motor de base de datos.
 - IaaS: Infraestructure as a Service. Esta tipología se corresponde con Azure SQL Server in Virtual Machine, ya que tenemos acceso al sistema operativo y a instalar lo que queramos en la maquina virtual.
 
-Cada una de estos tres productos ofrece diferentes precios, segun queramos que el producto sea mas o menos completo.
+Azure SQL se puede dimensionar y especialmente facturar mediante dos modelos:
 
-Vamos a ver con un poco mas detalle cada una de ellas.
+- TDU.
+- vCore.
+
+Vamos a ver cada uno de los tres tipos básicos de productos de Azure SQL:
 
 ## Azure SQL Database *(PaaS)*
 
-Esta podria ser la opción mas barata y donde menos control tenemos sobre el producto y por tanto donde no requiere esfuerzos de administración.
+Esta podria ser la opción mas barata y donde menos control tenemos sobre el SQL Server y por tanto donde no requiere esfuerzos de administración. Esta orientado en tener una base de datos siempre disponible, actualizada y facil de modificar sus recursos de memoria, cpu y almacenamiento.
 Simplemente es una base de datos disponible en la nube a la que nos podemos conectar con nuestro Management Studio de siempre (SSMS que es gratuito) o con Azure Portal o con nuestra aplicación.
-Esta base de datos siempre esta en la ultima versión de SQL Server, es mas, está en versiones no disponibles comercialmente (podemos compararlo ejecutando `SELECT @@VERSION`). Tiene disponibles todas las funcionalidades que se le puede pedir a una base de datos.
+Esta base de datos siempre está en la áltima versión de SQL Server, es mas, está en versiones no disponibles comercialmente (podemos compararlo ejecutando `SELECT @@VERSION`). Tiene disponibles todas las funcionalidades que se le puede pedir a una base de datos.
 
 Incluye una serie de servicicos por defecto:
 - Capacidad de almancenamiento hasta 4 TB.
