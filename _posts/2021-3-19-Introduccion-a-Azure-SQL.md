@@ -21,12 +21,12 @@ La solución Azure SQL se compone basicamente de tres productos:
 Estos tres productos se pueden clasificar en dos tipologias:
  
 - **PaaS**: Platform as a Service. Esta tipología engloba a Azure SQL Database y Azure SQL Managed Instance, porque solo accedemos al servicio del motor de base de datos.
-- **IaaS**: Infraestructure as a Service. Esta tipología se corresponde con Azure SQL Server in Virtual Machine, ya que tenemos acceso al sistema operativo y a instalar lo que queramos en la maquina virtual.
+- **IaaS**: Infraestructure as a Service. Esta tipología se corresponde con Azure SQL Server on Virtual Machine, ya que tenemos acceso al sistema operativo y a instalar lo que queramos en la maquina virtual.
 
 Azure SQL se puede dimensionar y especialmente facturar mediante dos modelos:
 
-- DTUs.
-- vCore.
+- DTUs (Database Transaction Unit): Es una medida de rendimiento que abarca los cores, memoria y operaciones de I/O.
+- vCore (Virtual Cores): Se selecciona el numero de cores que queremos para nuestra plataforma en la nube, y según el numero de cores, tendremos una cantidad de almacenamiento y memoria.
 
 Vamos a ver cada uno de los tres tipos básicos de productos de Azure SQL:
 
