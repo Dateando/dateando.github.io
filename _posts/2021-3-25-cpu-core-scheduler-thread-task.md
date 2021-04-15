@@ -24,7 +24,7 @@ Veamos conceptos:
 **Request**: es la representación lógica de una query o un proceso batch. Tambien abarca operaciones como un checkpoint o un una escritua en el log de transacciones.
 Las request pasan por varias fases y sufren diferentes esperas por los recursos que necesita. Las requests se dividen en minitareas llamadas task/tarea. Cada tarea debe ser procesada por un worker y los workers son gestionados por schedulers.
 
-Para que una request se pueda procesar por la cpu, tiene que tener previamente todos los recursos que necesita. Cuando lo tiene todo, espera en la cola para que se le asigne un "trozo de tiempo" de cpu, porque las cpu procesan las peticiones por trozos de tiempo, no se asignan a una solicitud hasta que termina, va dedicando "trozos de tiempo" a las request que estan en la cola.
+Para que una request se pueda procesar por la cpu, tiene que tener previamente todos los recursos que necesita. Cuando lo tiene todo, espera en la cola para que se le asigne un "trozo de tiempo" de cpu, porque las cpu procesan las peticiones por trozos de tiempo, no se asignan a una solicitud hasta que termina, va dedicando "trozos de tiempo" a las request que estan en la cola. Si una request recibe un "trozo de tiempo" pero le falta otro recursos, cede su "trozo de tiempo" para que sea utilizado por otro request (procesos colaborarivos).
 
 
 **Worker**: Es la representación lógica de un thread dentro del SQLOS. Son los responsables de ejecutar una tarea en un scheduler.
