@@ -5,7 +5,7 @@ published-on: 25 March 2021
 keywords: sqlserver, databases,sessions, process, dmv, dm_exec_requests, dm_exec_connections, dm_exec_sessions, CPU, Cores, Schedulers, Threads, Tasks 
 ---
 
-Vamos a intentar entender como funcona a un nivel alto, como SQL Server gestiona los procesos que gestiona. Primero veamos las fases que se producen:
+Voy a intentar explicar como SQL Server gestiona los procesos que procesa. Primero veamos las fases que se producen:
 
 1 - Se crea una conexión en SQL Server al recibir una petición de un cliente externo. En procesos internos, esta fase no se produce.
 2 - Se crea una session (session_id) al realizarse la petición con exito.
