@@ -30,7 +30,7 @@ Azure SQL se puede dimensionar y especialmente facturar mediante dos modelos:
 
 Vamos a ver cada uno de los tres tipos básicos de productos de Azure SQL:
 
-## Azure SQL Database *(PaaS)*
+## Azure SQL Database *(PaaS y DaaS*
 
 Esta podria ser la opción mas barata y donde menos control tenemos sobre el SQL Server y por tanto donde no requiere esfuerzos de administración. Esta orientado en tener una base de datos siempre disponible, actualizada y facil de modificar sus recursos de memoria, cpu y almacenamiento.
 Simplemente es una base de datos disponible en la nube a la que nos podemos conectar con nuestro Management Studio de siempre (SSMS que es gratuito) o con Azure Portal o con nuestra aplicación.
