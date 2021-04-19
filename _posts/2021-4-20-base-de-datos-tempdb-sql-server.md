@@ -34,7 +34,7 @@ Las bases de datos TEMPDB se utilizan generalmente en las siguientes operaciones
 - Table variables.
 - Triggers.
 - Cursores.
-- Prpcedimientos Alamacenados temporales.
+- Procedimientos Alamacenados temporales.
 - Procesos de mantenimiento de índices en TEMPDB (SORT_IN_TEMPDB)
 - Ordenaciones pesadas.
 - Join pesados.
