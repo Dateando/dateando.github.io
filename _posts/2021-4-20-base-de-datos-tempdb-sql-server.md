@@ -15,6 +15,8 @@ Cada fichero de datos (data file) de una base de datos tiene una pagina de metad
 ** Tamaño de los ficheros **
 El tamaño de los ficheros de datos debe ser el mismo en todos. SQL Server utiliza un algoritmo para asignar espacio en cada fichero, que está optimizado para que asigne el espacio libre del fichero de datos que mas espacio libre tenga. Si tenemos unos ficheros de datos mucho mayores que otros, SQL Server va a tender a asignar espacio en esos ficheros ya que logicamente deberían tener mas espacio libre, saturando sus colas de petición de espacio libre y las operaciones de lectura/escritura. Si todos los ficheros tienen el mismo tamaño, el uso y saturación será homogeneo entre todos los ficheros. 
 El crecimento de los ficheros de datos en general no debe ser definido en %, sino que debemos fijar el tamaño fijo en que tienen que crecer si es necesario. Lo optimo es asignar el tamaño necesario a la hora de configurar la base de datos, debido a que si dejamos que la base de datos vaya haciendo crecer sus ficheros a demanda de las necesidades de los procesos, generaremos fragmentacion externas en los discos y por tanto menor rendimiento en las operaciones de lectura/escritura (I/O).
+No es recomendable reducir (shrink) la base de datos TEMPDB, debido a que si en algún momento a llegar a necesitar ese tamaño, es muy probable que en el futuro lo vuelva a necesitar, y de esta forma evitamos que SQL Server tenga que buscar espacio libre disponible en los discos para asignarselos. 
+Una importante recomendación a la hora de asignar nuevo espacio a un fichero de datos es tener configurado *Enable Instant File Initialization*, lo que permitira crear o añadir espacio libre a los ficheros de datos de una forma mucho mas rápida.
 
 ** Localización de los ficheros **
 
@@ -23,7 +25,10 @@ La base de datos TEMPDB debe ser ubicada en un almacenamiento dedicado. No es ne
 Las bases de datos TEMPDB se utilizan generalmente en las siguientes situaciones:
 
 - Uso de Tablas temporales.
+- Triggers.
+- Table variables.
+- Prpcedimientos Alamacenados temporales.
 - Procesos de mantenimiento de índices en TEMPDB (SORT_IN_TEMPDB)
 - Ordenaciones pesadas.
 - Join pesados.
-- Nivel de aislamiento ISOLATION SNAPSHOT.
+- Nivel de aislamiento READ COMMITTED SNAPSHOT ISOLATION (RCSI) .
