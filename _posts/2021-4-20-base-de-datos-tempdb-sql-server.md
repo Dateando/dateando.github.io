@@ -31,10 +31,15 @@ La base de datos TEMPDB debe ser ubicada en un almacenamiento dedicado. No es ne
 Las bases de datos TEMPDB se utilizan generalmente en las siguientes operaciones:
 
 - Tablas temporales.
-- Triggers.
 - Table variables.
+- Triggers.
+- Cursores.
 - Prpcedimientos Alamacenados temporales.
 - Procesos de mantenimiento de índices en TEMPDB (SORT_IN_TEMPDB)
 - Ordenaciones pesadas.
 - Join pesados.
-- Nivel de aislamiento READ COMMITTED SNAPSHOT ISOLATION (RCSI) .
+- Nivel de aislamiento SNAPSHOT ISOLATION y READ COMMITTED SNAPSHOT ISOLATION (RCSI) .
+- MARS – (Multiple Active Result Sets)
+
+
+
