@@ -6,7 +6,7 @@ keywords: sqlserver, sql server, tempdb, data files, ficheros de datos, tunning,
 ---
 
 
-Tempdb es una base de datos de sistema de SQL Server y solo existe una por instancia/instalación, siendo utilizada por todas las bases de datos de usuario. por ello es importante configurarla de forma correcta. 
+TEMPDB es una base de datos de sistema de SQL Server y solo existe una por instancia/instalación, siendo utilizada por todas las bases de datos de usuario. por ello es importante configurarla de forma correcta. 
 
 TEMPDB es una base de datos que se resetea o inicializa cada vez que se reinicia la instancia, por tanto los datos que tiene son temporales. 
 
