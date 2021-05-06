@@ -7,17 +7,17 @@ keywords: sqlserver, databases,sessions, process, dmv, dm_exec_requests, dm_exec
 
 Voy a intentar explicar como SQL Server gestiona los procesos que procesa. Primero veamos las fases que se producen:
 
-- 1 - Se crea una conexión en SQL Server al recibir una petición de un cliente externo. En procesos internos, esta fase no se produce.
+- 1 - Cuando una aplicación (SSMS, sqlcmd, .net, phyton,...) intenta conectarse a SQL Serer, este le autentica y abre una conexión y crea una sesion para esa conexión. En procesos internos, esta fase no se produce, directamente se crea una sesion para el proceso interno.
 
-- 2 - Se crea una session (session_id) al realizarse la petición con exito.
+- 2 - Cuando se crea una sesion (session) al establecerse la conexión on exito, se le asocia una session_id.
 
-- 3 - Se genera una request/solicitud que hay que procesar.
+- 3 - La aplicación manda una request/solicitud que puede ser por ejemplo una SELECT y que hay que procesar.
 
-- 4 - Se genera una task/tarea para procesar la request/solicitud y se solicitan una serie de recursos para poder trabajar (cpu, memoria, tablas, indices, etc).
+- 4 - Para esta request/solicitud, se genera una o mas tasks/tareas para procesarla y se solicitan una serie de recursos para poder trabajar (cpu, memoria, tablas, indices, etc).
 
-- 5 - Se enlaza la tarea con un worker.
+- 5 - Se enlaza cada tarea con un worker.
 
-- 6 - La tarea se ejecuta en un scheduler.
+- 6 - Cada tarea se ejecuta en un scheduler.
 
 Veamos conceptos:
 
