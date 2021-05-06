@@ -7,17 +7,27 @@ keywords: sqlserver, databases,sessions, process, dmv, dm_exec_requests, dm_exec
 
 Voy a intentar explicar como SQL Server gestiona los procesos que procesa. Primero veamos las fases que se producen:
 
-- 1 - Cuando una aplicación (SSMS, sqlcmd, .net, phyton,...) intenta conectarse a SQL Serer, este le autentica y abre una conexión y crea una sesion para esa conexión. En procesos internos, esta fase no se produce, directamente se crea una sesion para el proceso interno.
+- 1 - Cuando una aplicación (SSMS, sqlcmd, .net, phyton,...) intenta conectarse a SQL Serer, este le autentica y si tiene exito abre una conexión, creando una sesion para esa conexión. En procesos internos, esta fase no se produce, directamente se crea una sesion para el proceso interno.
+/sys.dm_exec_connections/
 
-- 2 - Cuando se crea una sesion (session) al establecerse la conexión on exito, se le asocia una session_id.
+- 2 - Cuando se crea una sesion (session) al establecerse la conexión con exito, se le asocia una session_id.
+/sys.dm_exec_sessions/
 
-- 3 - La aplicación manda una request/solicitud que puede ser por ejemplo una SELECT y que hay que procesar.
+- 3 - La aplicación manda una request/solicitud que puede ser por ejemplo una SELECT y que SQL Server tiene que procesar.
+/sys.dm_exec_request/
 
-- 4 - Para esta request/solicitud, se genera una o mas tasks/tareas para procesarla y se solicitan una serie de recursos para poder trabajar (cpu, memoria, tablas, indices, etc).
+- 4 - Para esta request/solicitud, se genera una o mas tareas (tasks) para procesarla y se solicitan una serie de recursos para poder trabajar (cpu, memoria, tablas, indices, etc).
+/sys.dm_os_tasks/
 
 - 5 - Se enlaza cada tarea con un worker.
+/sys.dm_os_workers/
 
-- 6 - Cada tarea se ejecuta en un scheduler.
+- 6 - Cada tarea se ejecuta en una hilo del sistema operativo (thread).
+/sys.dm_os_threads/
+
+- 7 - Las tareas (tasks) son gestionadas por un scheduler, que es el que le da acceso a los recursos.
+/sys.dm_os_schedulers/
+
 
 Veamos conceptos:
 
