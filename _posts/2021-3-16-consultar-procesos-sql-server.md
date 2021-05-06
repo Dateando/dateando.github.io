@@ -23,7 +23,7 @@ Vamos a ver las DMV mas detalladamente
 
 ## master.dbo.sysprocesses 
 
-Esta vista viene de la version de SQL Server 2000 y está marcada como deprecated. Deprecated en informatica significa que aunque sigue estando disponible, no quieren que te encariñes con la funcionalidad ya que en proximas versions desaparecera.
+Esta vista viene de la version de SQL Server 2000 y está marcada como deprecated. Deprecated en informatica significa que aunque sigue estando disponible, no quieren que te encariñes con la funcionalidad ya que en proximas versiones desaparecera.
 
 Aunque esta deprecated, es muy util porque te permite ver mucha información interesante sin necesidad de hacer muchas JOINS con otras.
 
