@@ -25,7 +25,7 @@ Voy a intentar explicar como SQL Server gestiona los procesos que procesa. Prime
 - 6 - Cada tarea se ejecuta en una hilo del sistema operativo (thread).
 `sys.dm_os_threads`
 
-- 7 - Las tareas (tasks) son gestionadas por un scheduler, que es el que le da acceso a los recursos.
+- 7 - Las tareas (tasks) son gestionadas por un scheduler, que es el que le da acceso a los recursos. Cuando llega una request, el scheduler le asigna una task (task) y la tarea a un woker thread.
 `sys.dm_os_schedulers`
 
 
