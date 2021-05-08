@@ -7,25 +7,23 @@ keywords: sqlserver, databases,sessions, process, dmv, dm_exec_requests, dm_exec
 
 Voy a intentar explicar como SQL Server gestiona los procesos que le llegan. Primero veamos las fases que se producen:
 
-- 1 - Cuando una aplicación (SSMS, sqlcmd, .net, phyton,...) intenta conectarse a SQL Serer, este le autentica y si tiene exito abre una conexión, creando una sesion para esa conexión. En procesos internos, esta fase no se produce, directamente se crea una sesion para el proceso interno.
+- 1 - Cuando una aplicación (SSMS, sqlcmd, .net, phyton,...) intenta conectarse a SQL Server, este le valida a través de un proceso de autenticación y si tiene exito abre una conexión (connection), creando una sesion (session) para esa conexión. En procesos internos, la conexión no se establece, directamente se crea una sesion para el proceso interno. La sesion genera un session_id, que se vincula tambien a la conexión.
 `sys.dm_exec_connections`
-
-- 2 - Cuando se crea una sesion (session) al establecerse la conexión con exito, se le asocia una session_id.
 `sys.dm_exec_sessions`
 
-- 3 - La aplicación manda una request/solicitud que puede ser por ejemplo una SELECT y que SQL Server tiene que procesar.
+- 2 - La aplicación manda a través de su conexión una request/solicitud que puede ser por ejemplo una SELECT y que SQL Server tiene que procesar.
 `sys.dm_exec_request`
 
-- 4 - Para esta request/solicitud, se genera una o mas tareas (tasks) para procesarla y se solicitan una serie de recursos para poder trabajar (cpu, memoria, tablas, indices, etc).
+- 3 - Para esta request/solicitud, se generan una o mas tareas (tasks) para procesarla y se solicitan una serie de recursos necesarios para trabajar (cpu, memoria, tablas, indices, páginas, etc).
 `sys.dm_os_tasks`
 
-- 5 - Se enlaza cada tarea con un worker.
+- 4 - Se enlaza cada tarea con un worker.
 `sys.dm_os_workers`
 
-- 6 - Cada tarea se ejecuta en una hilo del sistema operativo (thread).
+- 5 - Cada tarea se ejecuta en una hilo del sistema operativo (thread).
 `sys.dm_os_threads`
 
-- 7 - Las tareas (tasks) son gestionadas por un scheduler, que es el que le da acceso a los recursos. Cuando llega una request, el scheduler le asigna una task (task) y la tarea a un woker thread. Si SQL Server decide ejecutar la request de forma paralela, dividirá la subtarea en subtareas, y si tenemos fijado el Max degree of parallelism (MAXDOP), no podra crear mas subtareas de las fijadas en el parámetro.
+- 6 - Las tareas (tasks) son gestionadas por un scheduler, que es el que le da acceso a los recursos. Cuando llega una request, el scheduler le asigna una task (task) y la tarea a un woker thread. Si SQL Server decide ejecutar la request de forma paralela, dividirá la subtarea en subtareas, y si tenemos fijado el Max degree of parallelism (MAXDOP), no podra crear mas subtareas de las fijadas en el parámetro.
 `sys.dm_os_schedulers`
 
 
