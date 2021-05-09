@@ -30,7 +30,7 @@ Azure SQL se puede dimensionar y especialmente facturar mediante dos modelos:
 - DTUs (Database Transaction Unit): Es una medida de rendimiento que abarca los cores, memoria y operaciones de I/O.
 - vCore (Virtual Cores): Se selecciona el numero de cores que queremos para nuestra plataforma en la nube, y según el numero de cores, tendremos una cantidad de almacenamiento y memoria. Este modelo no se puede en Azure SQL Server on Azure Virtual Machine.
 
-<img src="/imaged/azure.jpg" alt="Azure New Logo 2021" style="width:200px;display: block;margin-left: auto;margin-right: auto;width: 50%;">
+<img src="/images/azure.jpg" alt="Azure New Logo 2021" style="width:200px;display: block;margin-left: auto;margin-right: auto;width: 50%;">
 
 Vamos a ver cada uno de los tres tipos básicos de productos de Azure SQL:
 
