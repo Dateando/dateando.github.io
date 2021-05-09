@@ -59,4 +59,6 @@ En este caso estamos pagando por una instancia (siempre en la ultima versión di
 
 Es producto nos ofrece una maquina virtual en la que podemos poner la versión que queramos de SQL Server, tenemos acceso al sistema operativo e incluso podemos instalar otras aplicaciones necesarias.
 
+Para mas información, se puede consultar el <a href="https://azure.microsoft.com/es-es/products/azure-sql/database/" alt="Azure SQL Database" target="_blank">sito oficial de Microsoft Azure SQL Database</a>.
+
 
