@@ -16,43 +16,49 @@ El proceso para habilitar TDE - Transparent Data Encription en una instancia y l
 **PRIMER PASO:**
 
 Creamos en la base de datos de sistema *master* un MASTER KEY ENCRYPTION que se genera con una contraseña que debemos definir y guardar:
-
+~~~
 USE master
 GO
 CREATE MASTER KEY ENCRYPTION BY PASSWORD='miContraseniaSecret4'
 GO
+~~~
 
 **SEGUNDO PASO:**
 
 Creamos un certificado, que sera el que encripte las bases de datos que designemos, mediante la MASTER KEY creada en el paso uno:
-
+~~~
 USE master
 GO
 CREATE CERTIFICATE cerInstanciaDateando01
 WITH SUBJECT='CERTIFICADO DATEANDO 01'
 GO
+~~~
 
 **TERCER PASO:**
 
 Creamos un DATABASE ENCRYPTION KEY sobre la base de datos que queremos encriptar, con el algoritmo que elijamos, y utilizando el certificado creado anteriormente:
 
+~~~
 CREATE DATABASE ENCRYPTION KEY
 WITH ALGORITHM = AES_256 ENCRYPTION BY SERVER CERTIFICATE cerInstanciaDateando01
 GO
+~~~
 
 **CUARTO PASO:**
 
 Habilitamos la encriptación en la base de datos de usuario donde hemos creado el DATABASE ENCRYPTION KEY:
 
+~~~
 ALTER DATABASE MiBaseDeDatos SET ENCRYPTION ON
 GO
+~~~
 
 Ahora los ficheros de nuestra base de datos están protegidos, y los siguientes backups que se se realicen sobre ellos.
 
 Puntos a tener en cuenta:
 
 - Es muy importante hacer un backup del certificado que hemos creado en la instancia y guardarlo en un lugar seguro. Lo podemos hacer de la siguiente forma:
-
+~~~
 BACKUP CERTIFICATE cerInstanciaDateando01
 TO FILE='C:\MIPATH\dd_mm_aaaa-cerInstanciaDateando01_backup'
 WITH PRIVATE KEY
@@ -61,7 +67,7 @@ WITH PRIVATE KEY
   ENCRYPTION BY PASSWORD='miContraseniaSecret4'
 )
 GO
-
+~~~
 - El proceso de encriptacion sobre una base de datos se realiza en background, ejecutandose con baja prioridad sin sobrecargar el sistema.
 - Si TDE lo implementamos sobre cluster de ALWAYS ON, debemos ejecutar los dos primeros pasos en todos las replicas, ya que ALWAYS ON no replica las bases de datos de sistema.
 -
