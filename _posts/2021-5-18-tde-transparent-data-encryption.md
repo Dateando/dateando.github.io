@@ -1,6 +1,6 @@
 ---
 layout: post
-title: SQL Server ::  TDE - transparent data encryption
+title: SQL SERVER  TDE - transparent data encryption
 published-on: 18 May 2021
 tag: sqlserver, databases,sessions, tde, transparent data encryption
 keywords: sqlserver, databases,sessions, tde, transparent data encryption 
