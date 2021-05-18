@@ -46,7 +46,7 @@ GO
 
 **CUARTO PASO:**
 
-Habilitamos la encriptación en la base de datos de usuario donde hemos creado el CLAVE DE CIFRADO DE BASE DE DATOS (DATABASE ENCRYPTION KEY):
+Habilitamos la encriptación en la base de datos de usuario donde hemos creado la CLAVE DE CIFRADO DE BASE DE DATOS (DATABASE ENCRYPTION KEY):
 
 ~~~
 ALTER DATABASE MiBaseDeDatos SET ENCRYPTION ON
@@ -55,7 +55,7 @@ GO
 
 Ahora los ficheros de nuestra base de datos están protegidos, y los siguientes backups que se se realicen sobre ellos.
 
-Puntos a tener en cuenta:
+**Puntos a tener en cuenta:**
 
 - Es muy importante hacer un backup del certificado que hemos creado en la instancia y guardarlo en un lugar seguro. Lo podemos hacer de la siguiente forma:
 ~~~
@@ -69,14 +69,15 @@ WITH PRIVATE KEY
 GO
 ~~~
 - El proceso de encriptacion sobre una base de datos se realiza en segundo plano (background), ejecutandose con baja prioridad sin sobrecargar el sistema.
-- Si TDE lo implementamos sobre cluster de ALWAYS ON, debemos ejecutar los dos primeros pasos en todos las replicas, ya que ALWAYS ON no replica las bases de datos de sistema.
+- Si TDE lo implementamos sobre un ALWAYS ON, debemos ejecutar los dos primeros pasos en todas las replicas, ya que ALWAYS ON no replica las bases de datos de sistema.
 - En el momento en que se encripta la primera base de datos de usuario, automenticamente se encripta la base de datos de sistema `TEMPDB`.
 - Los ficheros de `FILESTREAM` no se pueden ecriptar con TDE.
-- Dehabilitar TDE sobre una base de datos encriptada, es tan sencillo como habilitarla:
+- Deshabilitar TDE sobre una base de datos encriptada, es tan sencillo como habilitarla:
  ~~~
 ALTER DATABASE MiBaseDeDatos SET ENCRYPTION OFF
 GO
 ~~~
+
 
 
 Podemos consultar y profundizar sobre TDE Transparent Data Encryption, podemos acudir a la documentación oficial:
