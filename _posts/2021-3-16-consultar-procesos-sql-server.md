@@ -1,6 +1,7 @@
 ---
 layout: post
 title: SQL Server  Monitorizar los procesos mediante DMV
+permalink: /SQLSERVER/consultar-procesos/
 published-on: 16 March 2021
 tag: sqlserver, databases,sessions, process, dmv, dm_exec_requests, dm_exec_connections, dm_exec_sessions
 keywords: sqlserver, databases,sessions, process, dmv, dm_exec_requests, dm_exec_connections, dm_exec_sessions 
