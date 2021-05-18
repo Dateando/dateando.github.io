@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "SQL SERVER  TDE - transparent data encryption"
+title: "SQL SERVER  TDE - Transparent Data Encryption"
 permalink: /SQLSERVER/tde-transparent-data-encryption/
 published-on: 18 May 2021
 date: 2021-05-18
