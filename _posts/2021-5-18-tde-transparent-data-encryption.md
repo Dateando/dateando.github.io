@@ -1,9 +1,12 @@
 ---
 layout: post
-title: SQL SERVER  TDE - transparent data encryption
+title: "SQL SERVER  TDE - transparent data encryption"
+permalink: /SQLSERVER/tde-transparent-data-encryption/
 published-on: 18 May 2021
+date: 2021-05-18
 tag: sqlserver, databases,sessions, tde, transparent data encryption
 keywords: sqlserver, databases,sessions, tde, transparent data encryption 
+categories: SQLSERVER TDE
 ---
 
 Hay varias formas de encriptar los datos que almacena SQL Server, y una de las mas conocidas y menos intrusivas en las aplicaciones es TDE o Transparent Data Encryption. Como su nombre indica, la encriptación de los datos es transparente, pero transparente para la aplicación porque ella ni se entera. 
