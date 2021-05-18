@@ -71,6 +71,12 @@ GO
 - El proceso de encriptacion sobre una base de datos se realiza en segundo plano (background), ejecutandose con baja prioridad sin sobrecargar el sistema.
 - Si TDE lo implementamos sobre cluster de ALWAYS ON, debemos ejecutar los dos primeros pasos en todos las replicas, ya que ALWAYS ON no replica las bases de datos de sistema.
 - En el momento en que se encripta la primera base de datos de usuario, automenticamente se encripta la base de datos de sistema `TEMPDB`.
+- Los ficheros de `FILESTREAM` no se pueden ecriptar con TDE.
+- Dehabilitar TDE sobre una base de datos encriptada, es tan sencillo como habilitarla:
+ ~~~
+ALTER DATABASE MiBaseDeDatos SET ENCRYPTION OFF
+GO
+~~~
 
 
 Podemos consultar y profundizar sobre TDE Transparent Data Encryption, podemos acudir a la documentación oficial:
