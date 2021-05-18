@@ -11,7 +11,7 @@ Hay varias formas de encriptar los datos que almacena SQL Server, y una de las m
 Esta encriptacion de datos es a nivel de base de datos, y sobre datos frios, es decir, aquellos datos que estan en disco. En el momento que un usuario o aplicación hace una consulta sobre unos datos y estos pasan del disco a memoria y luego viajan por la red hasta el proceso solicitante, los datos dejan de estar encriptados.
 Pero nos estamos asegurando que si alguien se hace con los ficheros de datos y log de transacciones de la base de datos encriptada, no podran ser utilizados en otra instancia. Y esto mismo ocurre con los backups realizados sobre una base de datos encriptada con TDE, no es posible restaurarlos en otra instancia.
 
-El proceso para habilitar TDE - Transparent Data Encription en una instancia y luego en cada base de datos que se desee es muy sencillo, y se hace en cuatro sencillos pasos, que requieren hacerlo por T-SQL, ya que SQL Server Manageent Studio no ofrecer hacerlo mediante un wizard.
+El proceso para habilitar TDE - Transparent Data Encription en una instancia y luego en cada base de datos que se desee es muy sencillo, y se hace en cuatro pasos, que requieren hacerlo por T-SQL, ya que SQL Server Manageent Studio no ofrece un wizard para poder realizarlo da una manera aun mas sencilla.
 
 **PRIMER PASO:**
 
@@ -58,7 +58,7 @@ Ahora los ficheros de nuestra base de datos están protegidos, y los siguientes 
 Puntos a tener en cuenta:
 
 - Es muy importante hacer un backup del certificado que hemos creado en la instancia y guardarlo en un lugar seguro. Lo podemos hacer de la siguiente forma:
-~~~
+~~
 BACKUP CERTIFICATE cerInstanciaDateando01
 TO FILE='C:\MIPATH\dd_mm_aaaa-cerInstanciaDateando01_backup'
 WITH PRIVATE KEY
@@ -67,7 +67,7 @@ WITH PRIVATE KEY
   ENCRYPTION BY PASSWORD='miContraseniaSecret4'
 )
 GO
-~~~
+~~
 - El proceso de encriptacion sobre una base de datos se realiza en background, ejecutandose con baja prioridad sin sobrecargar el sistema.
 - Si TDE lo implementamos sobre cluster de ALWAYS ON, debemos ejecutar los dos primeros pasos en todos las replicas, ya que ALWAYS ON no replica las bases de datos de sistema.
--
+
