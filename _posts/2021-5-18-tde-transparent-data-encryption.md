@@ -15,7 +15,7 @@ El proceso para habilitar TDE - Transparent Data Encription en una instancia y l
 
 **PRIMER PASO:**
 
-Creamos en la base de datos de sistema *master* un MASTER KEY ENCRYPTION que se genera con una contraseña que debemos definir y guardar:
+Creamos en la base de datos de sistema *master* una CLAVE MAESTRA (MASTER KEY ENCRYPTION) que se genera con una contraseña que debemos definir y guardar:
 ~~~
 USE master
 GO
@@ -25,7 +25,7 @@ GO
 
 **SEGUNDO PASO:**
 
-Creamos un certificado, que sera el que encripte las bases de datos que designemos, mediante la MASTER KEY creada en el paso uno:
+Creamos un certificado, que será encriptado mediante la CLAVE MAESTRA (MASTER KEY) creada en el paso uno:
 ~~~
 USE master
 GO
@@ -36,7 +36,7 @@ GO
 
 **TERCER PASO:**
 
-Creamos un DATABASE ENCRYPTION KEY sobre la base de datos que queremos encriptar, con el algoritmo que elijamos, y utilizando el certificado creado anteriormente:
+Creamos un CLAVE DE CIFRADO DE BASE DE DATOS (DATABASE ENCRYPTION KEY) sobre la base de datos que queremos encriptar, con el algoritmo que elijamos, y utilizando el certificado creado anteriormente para protegerla:
 
 ~~~
 CREATE DATABASE ENCRYPTION KEY
@@ -46,7 +46,7 @@ GO
 
 **CUARTO PASO:**
 
-Habilitamos la encriptación en la base de datos de usuario donde hemos creado el DATABASE ENCRYPTION KEY:
+Habilitamos la encriptación en la base de datos de usuario donde hemos creado el CLAVE DE CIFRADO DE BASE DE DATOS (DATABASE ENCRYPTION KEY):
 
 ~~~
 ALTER DATABASE MiBaseDeDatos SET ENCRYPTION ON
@@ -58,7 +58,7 @@ Ahora los ficheros de nuestra base de datos están protegidos, y los siguientes 
 Puntos a tener en cuenta:
 
 - Es muy importante hacer un backup del certificado que hemos creado en la instancia y guardarlo en un lugar seguro. Lo podemos hacer de la siguiente forma:
-~~
+~~~
 BACKUP CERTIFICATE cerInstanciaDateando01
 TO FILE='C:\MIPATH\dd_mm_aaaa-cerInstanciaDateando01_backup'
 WITH PRIVATE KEY
@@ -67,7 +67,11 @@ WITH PRIVATE KEY
   ENCRYPTION BY PASSWORD='miContraseniaSecret4'
 )
 GO
-~~
-- El proceso de encriptacion sobre una base de datos se realiza en background, ejecutandose con baja prioridad sin sobrecargar el sistema.
+~~~
+- El proceso de encriptacion sobre una base de datos se realiza en segundo plano (background), ejecutandose con baja prioridad sin sobrecargar el sistema.
 - Si TDE lo implementamos sobre cluster de ALWAYS ON, debemos ejecutar los dos primeros pasos en todos las replicas, ya que ALWAYS ON no replica las bases de datos de sistema.
+
+
+Podemos consultar y profundizar sobre TDE Transparent Data Encryption, podemos acudir a la documentación oficial:
+https://docs.microsoft.com/es-es/sql/relational-databases/security/encryption/transparent-data-encryption?view=sql-server-ver15
 
