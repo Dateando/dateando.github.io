@@ -19,7 +19,7 @@ El proceso para habilitar TDE - Transparent Data Encription en una instancia y l
 **PRIMER PASO:**
 
 Creamos en la base de datos de sistema *master* una CLAVE MAESTRA (MASTER KEY ENCRYPTION) que se genera con una contraseña que debemos definir y guardar:
-```
+```sql
 USE master
 GO
 CREATE MASTER KEY ENCRYPTION BY PASSWORD='miContraseniaSecret4'
