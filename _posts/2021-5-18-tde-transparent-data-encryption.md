@@ -29,7 +29,8 @@ GO
 **SEGUNDO PASO:**
 
 Creamos un certificado, que será encriptado mediante la CLAVE MAESTRA (MASTER KEY) creada en el paso uno:
-```
+
+```sql
 USE master
 GO
 CREATE CERTIFICATE cerInstanciaDateando01
@@ -41,7 +42,7 @@ GO
 
 Creamos un CLAVE DE CIFRADO DE BASE DE DATOS (DATABASE ENCRYPTION KEY) sobre la base de datos que queremos encriptar, con el algoritmo que elijamos, y utilizando el certificado creado anteriormente para protegerla:
 
-```
+```sql
 CREATE DATABASE ENCRYPTION KEY
 WITH ALGORITHM = AES_256 ENCRYPTION BY SERVER CERTIFICATE cerInstanciaDateando01
 GO
@@ -51,7 +52,7 @@ GO
 
 Habilitamos la encriptación en la base de datos de usuario donde hemos creado la CLAVE DE CIFRADO DE BASE DE DATOS (DATABASE ENCRYPTION KEY):
 
-```
+```sql
 ALTER DATABASE MiBaseDeDatos SET ENCRYPTION ON
 GO
 ```
@@ -61,7 +62,8 @@ Ahora los ficheros de nuestra base de datos están protegidos, y los siguientes 
 **Puntos a tener en cuenta:**
 
 - Es muy importante hacer un backup del certificado que hemos creado en la instancia y guardarlo en un lugar seguro. Lo podemos hacer de la siguiente forma:
-```
+
+```sql
 BACKUP CERTIFICATE cerInstanciaDateando01
 TO FILE='C:\MIPATH\dd_mm_aaaa-cerInstanciaDateando01_backup'
 WITH PRIVATE KEY
@@ -71,12 +73,13 @@ WITH PRIVATE KEY
 )
 GO
 ```
+
 - El proceso de encriptacion sobre una base de datos se realiza en segundo plano (background), ejecutandose con baja prioridad sin sobrecargar el sistema.
 - Si TDE lo implementamos sobre un ALWAYS ON, debemos ejecutar los dos primeros pasos en todas las replicas, ya que ALWAYS ON no replica las bases de datos de sistema.
 - En el momento en que se encripta la primera base de datos de usuario, automenticamente se encripta la base de datos de sistema `TEMPDB`.
 - Los ficheros de `FILESTREAM` no se pueden ecriptar con TDE.
 - Deshabilitar TDE sobre una base de datos encriptada, es tan sencillo como habilitarla:
-```
+```sql
 ALTER DATABASE MiBaseDeDatos SET ENCRYPTION OFF
 GO
 ```
