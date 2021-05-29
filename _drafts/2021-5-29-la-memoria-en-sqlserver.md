@@ -9,11 +9,39 @@ keywords: sqlserver, databases,sessions, memoria, buffer cache, buffer pool
 categories: SQLSERVER MEMORY
 ---
 
-Hay varias formas de encriptar los datos que almacena SQL Server, y una de las mas conocidas y menos intrusivas en las aplicaciones es TDE o Transparent Data Encryption. Como su nombre indica, la encriptación de los datos es transparente, pero transparente para la aplicación porque ella ni se entera. 
+Hay dos tipos de memoria en nuestros sistemas Windows, la **memoria física** y la **memoria virtual**. La memoria fisica son los GBs que tenemos en los chips de las placas de memoria de nuestro máquina y la virtual es la física mas el fichero de paginación que suele estar en nuestra unidad C: (C:\pagefile.sys). Esta memoria virtual es conocida como Virtual Address Space (VAS).
 
-**PRIMER PASO:**
+SQL Server va a ir cogiendo la memoria del sistema segun la va necesitando, pero no la va a liberar aunque no la este utilizando. Pero si el sistema operativo se ve en la necesidad de pedirle a SQL Server que libere memoria porque el la necesita para otros procesos, SQL Server se la ira dando, y cada pagina que libere de su espacio de memoria lo ira llevando al fichero de paginación. Si el parámetro "Lock Pages In Memory" está habilitado, SQL Server no liberará memoria, aunque el sistema operativo se lo esté pidiendo.
 
-Creamos en la base de datos de sistema *master* una CLAVE MAESTRA (MASTER KEY ENCRYPTION) que se genera con una contraseña que debemos definir y guardar:
+La memoria dedicada a SQL Server se divide en los siguientes componentes:
+
+- Antes de SQL Server 2021: 
+  - Buffel Pool (SPA) (Este espacio es definido mediante los parametros MIN Memory y MAX Memory).
+  - MPA + CLR + TS + DA 
+- Despues de SQL Server 2021: 
+  - Buffel Pool (SPA) + MPA + CLR (Este espacio es definido mediante los parametros MIN Memory y MAX Memory).
+  - TS + DA 
+
+El Buffer Pool (SPA) se compone de los siguientes elementos:
+
+- Plan Cache
+- Log Cache
+- Buffer Cache
+- System Data Structures
+- User Connections
+
+El Virtual Address Space (VAS) se compone de los siguientes elementos:
+
+- Libraries DLL's
+- SQL Server code
+- Extended Procs
+- COM Objects
+- Open Data Services
+- Linked Servers
+- Distributed QUeries
+- Multipage Allocation
+
+
 ```sql
 USE master
 GO
@@ -21,17 +49,9 @@ CREATE MASTER KEY ENCRYPTION BY PASSWORD='miContraseniaSecret4'
 GO
 ```
 
-- El proceso de encriptacion sobre una base de datos se realiza en segundo plano (background), ejecutandose con baja prioridad sin sobrecargar el sistema.
-- Si TDE lo implementamos sobre un ALWAYS ON, debemos ejecutar los dos primeros pasos en todas las replicas, ya que ALWAYS ON no replica las bases de datos de sistema.
-- En el momento en que se encripta la primera base de datos de usuario, automenticamente se encripta la base de datos de sistema `TEMPDB`.
-- Los ficheros de `FILESTREAM` no se pueden ecriptar con TDE.
-- Deshabilitar TDE sobre una base de datos encriptada, es tan sencillo como habilitarla:
-```sql
-ALTER DATABASE MiBaseDeDatos SET ENCRYPTION OFF
-GO
-```
 
 
 
-Podemos consultar y profundizar sobre TDE Transparent Data Encryption, podemos acudir a la documentación oficial:
-[https://docs.microsoft.com/es-es/sql/relational-databases/security/encryption/transparent-data-encryption?view=sql-server-ver15](https://docs.microsoft.com/es-es/sql/relational-databases/security/encryption/transparent-data-encryption?view=sql-server-ver15)
+
+Un muy buen artículo sobre la memoria es el siguiente:
+[http://udayarumilli.com/sql-server-memory-usage-sql-server-internals/](http://udayarumilli.com/sql-server-memory-usage-sql-server-internals/)
