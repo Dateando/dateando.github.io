@@ -11,7 +11,25 @@ categories: SQLSERVER MEMORY
 
 Hay dos tipos de memoria en nuestros sistemas Windows, la **memoria física** y la **memoria virtual**. La memoria fisica son los GBs que tenemos en los chips de las placas de memoria de nuestro máquina y la virtual es la física mas el fichero de paginación que suele estar en nuestra unidad C: (C:\pagefile.sys). Esta memoria virtual es conocida como Virtual Address Space (VAS).
 
-SQL Server va a ir cogiendo la memoria del sistema segun la va necesitando, pero no la va a liberar aunque no la este utilizando. Pero si el sistema operativo se ve en la necesidad de pedirle a SQL Server que libere memoria porque el la necesita para otros procesos, SQL Server se la ira dando, y cada pagina que libere de su espacio de memoria lo ira llevando al fichero de paginación. Si el parámetro "Lock Pages In Memory" está habilitado, SQL Server no liberará memoria, aunque el sistema operativo se lo esté pidiendo.
+SQL Server va a ir cogiendo la memoria del sistema segun la va necesitando, pero no la va a liberar aunque no la este utilizando. Pero si el sistema operativo se ve en la necesidad de pedirle a SQL Server que libere memoria porque el la necesita para otros procesos, SQL Server se la ira dando, y cada pagina que libere de su espacio de memoria lo ira llevando al fichero de paginación. Si el parámetro "Lock Pages In Memory" está habilitado, SQL Server no liberará memoria, aunque el sistema operativo se lo esté pidiendo. Por lo general, en los sistemas actuales no es recomendable habilitar "Lock Pages in Memory".
+
+No hay una regla general para configurar el parametros "max server memory", pero una recomendación, es dejar para el sistema operativo 1 GB por cada 4 GB que tengamos de memoria física para servidores con menos de 16 GB,  y 1 GB por cada 8 GB de memoria fisica para sistemas con mas de 16 GB.
+
+Memoria fisica <= 16 GB
+1 GB por cada 4 GB de memoria física.
+Ejemplo: Servidor de 16 GB: 4 GB para e Sistema Operativo y 12 GB para SQL Server.
+
+Memoria fisica > 16 GB
+1 GB por cada 8 GB de memoria física.
+Ejemplo: Servidor de 64 GB: 8 GB para e Sistema Operativo y 56 GB para SQL Server.
+
+Ejemplo de como configurar el limite de memoria para SQL Server:
+```sql
+sp_configure 'max server memory', 4096;
+GO
+RECONFIGURE;
+GO
+```
 
 La memoria dedicada a SQL Server se divide en los siguientes componentes:
 
@@ -40,16 +58,6 @@ El Virtual Address Space (VAS) se compone de los siguientes elementos:
 - Linked Servers
 - Distributed QUeries
 - Multipage Allocation
-
-
-```sql
-USE master
-GO
-CREATE MASTER KEY ENCRYPTION BY PASSWORD='miContraseniaSecret4'
-GO
-```
-
-
 
 
 
