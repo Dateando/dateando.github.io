@@ -11,7 +11,7 @@ Vamos a ver que vistas podemos utilizar para monitorizar los procesos en ejecuci
 
 *  **master.dbo.sysprocesses** *(deprecated)*
 *  **sys.dm_exec_sessions**
-*  **sys.dm_exec_connection+s**
+*  **sys.dm_exec_connections**
 *  **sys.dm_exec_request**  *(disponble desde SQLServer 2008)*
 
 
@@ -26,7 +26,7 @@ Vamos a ver las DMV mas detalladamente
 
 Esta vista viene de la version de SQL Server 2000 y está marcada como deprecated. Deprecated en informatica significa que aunque sigue estando disponible, no quieren que te encariñes con la funcionalidad ya que en proximas versiones desaparecera.
 
-Aunque esta deprecated, es muy util porque te permite ver mucha información interesante sin necesidad de hacer muchas JOINS con otras.
+Aunque esta deprecated, es muy util porque te permite ver mucha información interesante sin necesidad de hacer muchas JOINS con otras vistas.
 
 Columnas interesantes de esta vista:
 
